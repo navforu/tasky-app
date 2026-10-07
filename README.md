@@ -3,9 +3,11 @@
 > [!WARNING]
 > **For educational purposes and individual use only.** Tasky is a personal learning project, provided as-is with no warranty and no support. It is not health or medical advice. Read the [Disclaimer](DISCLAIMER.md) before installing.
 
+**[Product page](https://navforu.github.io/tasky-app/)** · **[Latest APK](../../releases/latest)** · [Privacy policy](https://naveenk.dev/privacy/tasky/)
+
 Tasky helps you stick to a daily habit challenge. The default is 75 days, and you can choose any length.
 
-This repository only publishes signed APKs. The source code is maintained privately, and every release here is built and uploaded automatically by CI.
+This repository only publishes the showcase site, screenshots, and signed APKs. The source code is maintained privately; every release here is built and uploaded automatically by CI.
 
 ## Screens
 
@@ -31,7 +33,7 @@ This repository only publishes signed APKs. The source code is maintained privat
 
 You can switch modes mid-challenge in settings, and the day you've reached is kept.
 
-**Stay accountable to a group.** Tap the WhatsApp button to send "Day 12! ✅" or "Day 12 Not Completed ❌" to your challenge group, or use the share button to send it through any other app (Telegram, Signal, SMS, email).
+**Stay accountable to a group.** Tap the Message button to send "Day 12! ✅" or "Day 12 Not Completed ❌" to your challenge group, or use the share button to send it through any other app (Telegram, Signal, SMS, email).
 
 **Get nudged before the day slips away.** Add one or more reminders, for example 07:30 to plan the day and 21:00 to finish up. Each reminder tells you how many tasks are left, or that you're done and can share.
 
@@ -49,9 +51,24 @@ Get the latest `Tasky-<version>.apk` from **[Releases](../../releases/latest)**.
 
 1. Open the APK on your Android phone (Android 7.0 or newer).
 2. If prompted, allow your browser or file manager to **install unknown apps**.
-3. Install, then open **Task75**.
+3. Install, then open **Tasky**.
 
 Android shows an "unknown app" warning because the APK doesn't come from the Play Store. Only install APKs from this repository's Releases page.
+
+## How the public / private setup works
+
+| Repo | Visibility | What lives there |
+| --- | --- | --- |
+| `navforu/tasky` | Private | Source, tests, signing secrets, `version.properties`, CI |
+| `navforu/tasky-app` (this repo) | Public | This page, screenshots, license, disclaimer, APK Releases |
+
+On every push to `main` in the private repo:
+
+1. **Version** — CI reads `version.properties` and bumps `MAJOR.MINOR.PATCH.BUILD` (regular builds increment the last digit; set `BUMP_PATCH` / `BUMP_MINOR` / `BUMP_MAJOR` for larger bumps). Past `.99`, the next field carries over (`0.0.0.99` → `0.0.1.0`). `versionCode` is derived so it always increases for Android / Play.
+2. **Test & build** — Unit tests run, then a release APK is signed with the upload keystore from GitHub secrets.
+3. **Publish** — If both succeed, CI uses a fine-grained token limited to this repo to sync the private `public/` folder here (`rsync --delete`), create a GitHub Release with the APK + SHA-256 checksum, and commit the new version back to the private repo.
+
+Pull requests on the private repo run tests and the build but do not publish. Edit the showcase or README under `public/` in the private repo; the next successful publish overwrites this repo.
 
 ## Features
 
@@ -62,14 +79,14 @@ Android shows an "unknown app" warning because the APK doesn't come from the Pla
   - **Extend**: the counter only moves forward once every task for the current day is done, so missed days extend the challenge.
 - Browse previous days to review your history.
 - Several daily reminder notifications.
-- One-tap sharing of "Day X ✅/❌" to WhatsApp or any app.
+- One-tap sharing of "Day X ✅/❌" to Message or any app.
 - Light and true-black (OLED) themes.
 - Export your whole challenge to a backup file and import it after a reinstall or on a new phone.
 - Everything is stored on your device. There is no account, server, analytics, or ads.
 
 ## Versions
 
-Releases use `MAJOR.MINOR.PATCH.BUILD` (for example `0.0.0.7`). The last number goes up on every published build.
+Releases use `MAJOR.MINOR.PATCH.BUILD` (for example `0.0.0.7`). The last number goes up on every published build unless a bump flag is set. See [How it’s built](https://navforu.github.io/tasky-app/#how-its-built) on the product page.
 
 ## License
 

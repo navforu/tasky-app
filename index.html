@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tasky — 75-day challenge tracker for Android</title>
+    <meta
+      name="description"
+      content="Tasky is an Android habit challenge tracker. Source stays private; CI builds signed APKs and publishes them to this public repo with screenshots and releases."
+    />
+    <link rel="canonical" href="https://navforu.github.io/tasky-app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tasky — 75-day challenge tracker" />
+    <meta
+      property="og:description"
+      content="Daily habit challenges on Android. Private source, public APK releases, automatic versioning."
+    />
+    <meta property="og:url" content="https://navforu.github.io/tasky-app/" />
+    <meta property="og:image" content="https://navforu.github.io/tasky-app/screenshots/03-today-in-progress.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Manrope:wght@450;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="./">Tasky</a>
+        <nav class="nav" aria-label="Page">
+          <a href="#screens">Screens</a>
+          <a href="#use-cases">Use cases</a>
+          <a href="#how-its-built">How it’s built</a>
+          <a href="https://github.com/navforu/tasky-app/releases/latest">Releases</a>
+        </nav>
+      </header>
+
+      <section class="hero" aria-label="Introduction">
+        <div class="hero-copy">
+          <h1>Tasky</h1>
+          <p class="lede">
+            A personal Android tracker for 75-day habit challenges — or any length you choose.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/navforu/tasky-app/releases/latest"
+              >Download latest APK</a
+            >
+            <a class="btn btn-ghost" href="https://github.com/navforu/tasky-app">GitHub repo</a>
+          </div>
+          <p class="fine-print">
+            Android 7.0+. Educational / individual use only. Your data stays on the device —
+            <a href="https://naveenk.dev/privacy/tasky/">privacy policy</a>.
+          </p>
+        </div>
+        <div class="hero-visual">
+          <img
+            src="screenshots/03-today-in-progress.png"
+            width="320"
+            height="569"
+            alt="Tasky challenge screen showing Day 12 of 75 with three of five tasks completed"
+          />
+        </div>
+      </section>
+
+      <aside class="notice" role="note">
+        For educational purposes and individual use only. Not health or medical advice. Read the
+        <a href="DISCLAIMER.md">disclaimer</a> before installing.
+      </aside>
+
+      <section id="screens">
+        <p class="section-kicker">Product</p>
+        <h2>Screens</h2>
+        <p class="section-lede">
+          Set up a challenge, tick daily tasks, review history, share status, and back up your
+          progress — all offline on the phone.
+        </p>
+        <div class="shot-grid">
+          <figure class="shot">
+            <img src="screenshots/01-setup.png" width="220" height="391" alt="Setup: start day, total days, mode, theme, reminders" />
+            <figcaption>Set up</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="screenshots/02-setup-tasks.png" width="220" height="391" alt="Setup with five daily tasks and Start Challenge" />
+            <figcaption>Your tasks</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="screenshots/03-today-in-progress.png" width="220" height="391" alt="Day 12 of 75 with progress" />
+            <figcaption>Today</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="screenshots/04-all-done.png" width="220" height="391" alt="All tasks done with celebration" />
+            <figcaption>All done</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="screenshots/05-settings.png" width="220" height="391" alt="Edit settings for an active challenge" />
+            <figcaption>Settings</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="screenshots/06-black-theme.png" width="220" height="391" alt="True-black OLED theme" />
+            <figcaption>Black theme</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="screenshots/07-share.png" width="220" height="391" alt="Share sheet with day status text" />
+            <figcaption>Share</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="use-cases">
+        <p class="section-kicker">Everyday use</p>
+        <h2>Use cases</h2>
+        <p class="section-lede">Built for people running a personal challenge, not for teams or coaches.</p>
+        <ul class="use-list">
+          <li>
+            <strong>Start a 75-day challenge</strong>
+            <p>Add daily rules as tasks, leave Total Days at 75, tap Start Challenge.</p>
+          </li>
+          <li>
+            <strong>Move mid-challenge from a notebook</strong>
+            <p>Set Start Day to where you already are so you don’t lose the streak.</p>
+          </li>
+          <li>
+            <strong>Continuous vs Extend</strong>
+            <p>Calendar days always advance, or only move forward when every task is ticked.</p>
+          </li>
+          <li>
+            <strong>Stay accountable</strong>
+            <p>Message or share “Day 12 ✅ / ❌” to the app you pick. Reminder notifications nudge you.</p>
+          </li>
+          <li>
+            <strong>Change phones without losing progress</strong>
+            <p>Export a backup JSON, then Import after reinstall.</p>
+          </li>
+          <li>
+            <strong>Night-friendly OLED</strong>
+            <p>True-black theme for late check-ins without glare.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="how-its-built">
+        <p class="section-kicker">Engineering</p>
+        <h2>How it’s built</h2>
+        <p class="section-lede">
+          The Android source stays private. This public repo only holds the showcase, license,
+          disclaimer, and signed APK releases.
+        </p>
+
+        <div class="repo-pair">
+          <article class="repo private">
+            <span class="label">Private</span>
+            <h3>navforu/tasky</h3>
+            <p>
+              Kotlin / Jetpack Compose app, unit tests, upload keystore (as CI secrets),
+              <code>version.properties</code>, and the
+              <code>release.yml</code> workflow that publishes here.
+            </p>
+          </article>
+          <article class="repo public">
+            <span class="label">Public</span>
+            <h3>navforu/tasky-app</h3>
+            <p>
+              This site (GitHub Pages), screenshots, MIT license, disclaimer, and every
+              <code>Tasky-x.y.z.n.apk</code> on Releases — overwritten from
+              <code>public/</code> on each successful publish.
+            </p>
+          </article>
+        </div>
+
+        <ol class="flow">
+          <li>
+            <strong>Push to private <code>main</code></strong>
+            <p>
+              CI bumps the version, runs JVM unit tests, and builds a release APK signed with the
+              upload keystore from GitHub secrets (not a throwaway debug key).
+            </p>
+          </li>
+          <li>
+            <strong>Publish only if tests and build succeed</strong>
+            <p>
+              Pull requests stop after test/build. On <code>main</code>, a fine-grained
+              <code>PUBLIC_REPO_TOKEN</code> (Contents: read/write on this repo only) checks out
+              <code>tasky-app</code>, syncs the private repo’s <code>public/</code> folder with
+              <code>rsync</code>, and pushes.
+            </p>
+          </li>
+          <li>
+            <strong>GitHub Release + APK</strong>
+            <p>
+              CI creates tag <code>vMAJOR.MINOR.PATCH.BUILD</code> here, attaches
+              <code>Tasky-….apk</code> and a <code>.sha256</code> checksum, then commits the new
+              <code>version.properties</code> back to the private repo.
+            </p>
+          </li>
+        </ol>
+
+        <h2 id="versions">Versions handle themselves</h2>
+        <p class="section-lede">
+          Releases use <code>MAJOR.MINOR.PATCH.BUILD</code>. Every publish increments the last
+          digit unless you flip a bump flag before pushing.
+        </p>
+        <div class="version-box" aria-label="Version bump rules">
+          <div><span class="dim"># version.properties in the private repo</span></div>
+          <div>VERSION=0.0.0.7</div>
+          <div>BUMP_MAJOR=false &nbsp;<span class="dim">→ 1.0.0.0</span></div>
+          <div>BUMP_MINOR=false &nbsp;<span class="dim">→ 0.1.0.0</span></div>
+          <div>BUMP_PATCH=false &nbsp;<span class="dim">→ 0.0.1.0</span></div>
+          <div><span class="dim"># all false → regular build: 0.0.0.7 → 0.0.0.8</span></div>
+          <div><span class="dim"># past .99 carries left: 0.0.0.99 → 0.0.1.0</span></div>
+          <div><span class="dim"># versionCode = M·1e6 + N·1e4 + P·100 + B (always increases)</span></div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <nav aria-label="Footer">
+          <a href="https://github.com/navforu/tasky-app/releases/latest">Latest release</a>
+          <a href="README.md">README</a>
+          <a href="DISCLAIMER.md">Disclaimer</a>
+          <a href="LICENSE">MIT License</a>
+          <a href="https://naveenk.dev/privacy/tasky/">Privacy</a>
+          <a href="https://naveenk.dev/projects/tasky/">On naveenk.dev</a>
+        </nav>
+        <p>© Naveen Kandakumar · Educational project · Data stays on your device</p>
+      </footer>
+    </div>
+  </body>
+</html>
