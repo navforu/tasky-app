@@ -78,34 +78,53 @@
         </p>
         <div class="shot-grid">
           <figure class="shot">
-            <img src="screenshots/01-setup.png" width="220" height="391" alt="Setup: start day, total days, mode, theme, reminders" />
+            <button type="button" aria-label="View Set up screenshot">
+              <img src="screenshots/01-setup.png" width="220" height="391" alt="Setup: start day, total days, mode, theme, reminders" />
+            </button>
             <figcaption>Set up</figcaption>
           </figure>
           <figure class="shot">
-            <img src="screenshots/02-setup-tasks.png" width="220" height="391" alt="Setup with five daily tasks and Start Challenge" />
+            <button type="button" aria-label="View Your tasks screenshot">
+              <img src="screenshots/02-setup-tasks.png" width="220" height="391" alt="Setup with five daily tasks and Start Challenge" />
+            </button>
             <figcaption>Your tasks</figcaption>
           </figure>
           <figure class="shot">
-            <img src="screenshots/03-today-in-progress.png" width="220" height="391" alt="Day 12 of 75 with progress" />
+            <button type="button" aria-label="View Today screenshot">
+              <img src="screenshots/03-today-in-progress.png" width="220" height="391" alt="Day 12 of 75 with progress" />
+            </button>
             <figcaption>Today</figcaption>
           </figure>
           <figure class="shot">
-            <img src="screenshots/04-all-done.png" width="220" height="391" alt="All tasks done with celebration" />
+            <button type="button" aria-label="View All done screenshot">
+              <img src="screenshots/04-all-done.png" width="220" height="391" alt="All tasks done with celebration" />
+            </button>
             <figcaption>All done</figcaption>
           </figure>
           <figure class="shot">
-            <img src="screenshots/05-settings.png" width="220" height="391" alt="Edit settings for an active challenge" />
+            <button type="button" aria-label="View Settings screenshot">
+              <img src="screenshots/05-settings.png" width="220" height="391" alt="Edit settings for an active challenge" />
+            </button>
             <figcaption>Settings</figcaption>
           </figure>
           <figure class="shot">
-            <img src="screenshots/06-black-theme.png" width="220" height="391" alt="True-black OLED theme" />
+            <button type="button" aria-label="View Black theme screenshot">
+              <img src="screenshots/06-black-theme.png" width="220" height="391" alt="True-black OLED theme" />
+            </button>
             <figcaption>Black theme</figcaption>
           </figure>
           <figure class="shot">
-            <img src="screenshots/07-share.png" width="220" height="391" alt="Share sheet with day status text" />
+            <button type="button" aria-label="View Share screenshot">
+              <img src="screenshots/07-share.png" width="220" height="391" alt="Share sheet with day status text" />
+            </button>
             <figcaption>Share</figcaption>
           </figure>
         </div>
+        <dialog class="shot-viewer" id="shot-viewer" aria-label="Screenshot">
+          <button type="button" class="shot-close" aria-label="Close">Close</button>
+          <img alt="" />
+          <p></p>
+        </dialog>
       </section>
 
       <section id="use-cases">
@@ -225,5 +244,30 @@
         <p>© Naveen Kandakumar · Educational project · Data stays on your device</p>
       </footer>
     </div>
+    <script>
+      (function () {
+        var dialog = document.getElementById("shot-viewer");
+        var view = dialog.querySelector("img");
+        var caption = dialog.querySelector("p");
+        document.querySelectorAll(".shot button[aria-label^='View ']").forEach(function (button) {
+          button.addEventListener("click", function () {
+            var image = button.querySelector("img");
+            view.src = image.currentSrc || image.src;
+            view.alt = image.alt;
+            caption.textContent = button.parentElement.querySelector("figcaption").textContent;
+            dialog.showModal();
+          });
+        });
+        dialog.querySelector(".shot-close").addEventListener("click", function () {
+          dialog.close();
+        });
+        dialog.addEventListener("click", function (event) {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener("close", function () {
+          view.removeAttribute("src");
+        });
+      })();
+    </script>
   </body>
 </html>
